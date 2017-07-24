@@ -3,12 +3,10 @@
   <li role="presentation" class="dropdown">
     <a id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">Files<span class="caret"></span></a>
     <ul id="menu1" class="dropdown-menu animated fadeInDown" role="menu">
-      <li role="presentation"><?= $this->Html->link( __('New'),
-                                                    [ 'controller' => 'Files', 'action' => 'add' ],
+      <li role="presentation"><?= $this->Html->link( __('New'), '/files/add/',
                                                     [ 'role'     => 'menuitem', 'tabindex' => '-1' ] ) ?>
       </li>
-      <li role="presentation"><?= $this->Html->link( __('List'),
-                                                    [ 'controller' => 'Files', 'action' => 'index' ],
+      <li role="presentation"><?= $this->Html->link( __('List'), '/files/index/',
                                                     [ 'role'     => 'menuitem',
                                                       'tabindex' => '-1' ] ) ?>
       </li>

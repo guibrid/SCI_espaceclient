@@ -24,6 +24,7 @@ class FilesController extends AppController
         $this->paginate = [
             'contain' => ['Tarifs']
         ];
+
         $files = $this->paginate($this->Files);
 
         $this->set(compact('files'));
