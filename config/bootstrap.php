@@ -230,8 +230,8 @@ if (Configure::read('debug')) {
 Configure::write('Theme', [
     'title' => 'Lillebonne',
     'logo' => [
-        'mini' => '<b>G</b>T',
-        'large' => '<b>Lillebonne</b>Theme'
+        'mini' => '<b>L</b>B',
+        'large' => 'Lillebonne'
     ],
     'login' => [
         'show_remember' => true,

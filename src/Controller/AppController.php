@@ -46,14 +46,15 @@ class AppController extends Controller
 
         $this->loadComponent('Auth', [
             'loginRedirect' => [
-                'controller' => 'pages',
-                'action' => 'home'
+                'controller' => 'files',
+                'action' => 'index'
             ],
             'logoutRedirect' => [
                 'controller' => 'users',
                 'action' => 'login',
                 'login'
-            ]
+            ],
+            'authorize' => ['Controller']
         ]);
 
         /*
@@ -80,7 +81,17 @@ class AppController extends Controller
 
         $this->viewBuilder()->theme('Gentelella');
 
-
-
     }
+
+    public function isAuthorized($user) {
+        // Admin allowed anywhere
+        if (isset($user['role']) && $user['role'] === 'Admin') {
+            return true;
+        }
+
+        return false;
+    }
+
+
+
 }

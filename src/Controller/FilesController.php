@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use App\Utility\Toolbox;
+use Cake\Event\Event;
 
 /**
  * Files Controller
@@ -13,6 +14,17 @@ use App\Utility\Toolbox;
  */
 class FilesController extends AppController
 {
+
+
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+        // Donner acces à la page index si loguer
+        if ($this->Auth->User('id')) {
+          $this->Auth->allow(['index']);
+        }
+    }
+
 
     /**
      * Index method
@@ -25,27 +37,24 @@ class FilesController extends AppController
             'contain' => ['Tarifs']
         ];
 
-        $files = $this->paginate($this->Files);
+        // Check si le user est admin (pour afficher les liens du menu dans la vue)
+        // et generer le where de la requête
+        $user = $this->Auth->user();
+        if($user['role'] == 'Admin')
+        {
+          $this->set('is_admin', 1);
+          $where = '';
+        } else {
+          $where = ['tarif_id' => $user['tarif_id']];
+        }
+
+
+        $query = $this->Files->find()->where($where);
+
+        $files = $this->paginate($query);
 
         $this->set(compact('files'));
-        $this->set('_serialize', ['files']);
-    }
-
-    /**
-     * View method
-     *
-     * @param string|null $id File id.
-     * @return \Cake\Http\Response|void
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function view($id = null)
-    {
-        $file = $this->Files->get($id, [
-            'contain' => ['Tarifs']
-        ]);
-
-        $this->set('file', $file);
-        $this->set('_serialize', ['file']);
+        $this->set('_serialize', ['files',]);
     }
 
     /**

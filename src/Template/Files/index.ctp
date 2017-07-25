@@ -4,17 +4,16 @@
   * @var \App\Model\Entity\File[]|\Cake\Collection\CollectionInterface $files
   */
 ?>
-<h3><?= __('Files') ?></h3>
-
+<h3><?= __('Téléchargez vos fichiers') ?></h3>
+<?php if( isset($is_admin) && $is_admin === 1 ) { ?>
 <?= $this->element('filesaction') ?>
-
+<?php } ?>
 <div class="files index x_content content">
     <table  class="table table-striped">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('name', 'Nom du fichier') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('tarif_id', 'Tarif') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('modified', 'Modifié le') ?></th>
+                <th scope="col">Nom du fichier</th>
+                <th scope="col">Mis à jour le</th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -22,27 +21,38 @@
             <?php foreach ($files as $file): ?>
             <tr>
                 <td><?= h($file->name) ?></td>
-                <td><?= $file->has('tarif') ? $this->Html->link($file->tarif->name, ['controller' => 'Tarifs', 'action' => 'view', $file->tarif->id]) : '' ?></td>
-                <td><?= h($file->modified) ?></td>
+                <td><?= $file->modified->format('d-m-Y') ?></td>
                 <td class="actions">
-                  <?= $this->Html->link(
-                       '<i class="fa fa-edit fa-2x"></i>',
-                        [ 'action'=>'edit', $file->id ],
-                        [ 'escape'              => false,  //use HTML en libellé
-                          'class'               => 'icon',
-                          'title'               => 'Modifier le fichier' ] ) ?>
+                  <?php if( isset($is_admin) && $is_admin === 1 ) { ?>
                     <?= $this->Html->link(
-                         '<i class="fa fa-trash-o fa-2x"></i>',
-                          [ 'action'=>'delete', $file->id ],
+                         '<i class="fa fa-edit fa-2x"></i>',
+                          [ 'action'=>'edit', $file->id ],
                           [ 'escape'              => false,  //use HTML en libellé
                             'class'               => 'icon',
-                            'confirm'             => __('Are you sure you want to delete {0}?', $file->name),
-                            'title'               => 'Supprimer le fichier' ] ) ?>
+                            'title'               => 'Modifier le fichier' ] ) ?>
+                    <?= $this->Html->link(
+                           '<i class="fa fa-trash-o fa-2x"></i>',
+                            [ 'action'=>'delete', $file->id ],
+                            [ 'escape'              => false,  //use HTML en libellé
+                              'class'               => 'icon',
+                              'confirm'             => __('Are you sure you want to delete {0}?', $file->name),
+                              'title'               => 'Supprimer le fichier' ] ) ?>
+                  <?php } else { ?>
+                    <?= $this->Html->link(
+                           '<i class="fa fa-download fa-2x"></i>',
+                           '/webroot/files/catalogues/' . $file->filedossier . '/' . $file->filename,
+                            [ 'escape'              => false,  //use HTML en libellé
+                              'class'               => 'icon',
+                              'title'               => 'Téléchargez le fichier',
+                              'target'              => '_blank' ] ) ?>
+
+                  <?php } ?>
                 </td>
             </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
+    <?php if( isset($is_admin) && $is_admin === 1 ) { ?>
     <div class="paginator">
         <ul class="pagination">
             <?= $this->Paginator->first('<< ' . __('first')) ?>
@@ -53,4 +63,5 @@
         </ul>
         <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
     </div>
+    <?php } ?>
 </div>

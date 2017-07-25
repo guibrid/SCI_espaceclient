@@ -17,8 +17,9 @@ class UsersController extends AppController
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
-        $this->Auth->allow(['login', 'add']);
+        $this->Auth->allow(['login','logout']);
         $this->Auth->config('login');
+
     }
 
     /**
@@ -139,8 +140,9 @@ class UsersController extends AppController
 
     public function logout()
     {
-      //$this->Auth->logout()
-      //$this->redirect(['action' => 'login']);
-      return $this->redirect($this->Auth->logout());
+      $this->Auth->logout();
+      $this->request->session()->destroy();
+      $this->redirect(['action' => 'login']);
+      //return $this->redirect($this->Auth->logout());
     }
 }
