@@ -68,7 +68,7 @@ class FilesController extends AppController
         if ($this->request->is('post')) {
 
             // Upload du fichier
-            $fileUpload = Toolbox::uploadFile(['file' => $this->request->data['filename'], 'validExtension' => [ 'gif', 'jpg', 'jpeg']]);
+            $fileUpload = Toolbox::uploadFile(['file' => $this->request->data['filename'], 'validExtension' => [ 'zip']]);
             $this->request->data['filename'] = $fileUpload['filename'];  // Récupére le nom final du fichier
             $this->request->data['filedossier'] = $fileUpload['folder']; // Récupère le dossier de destiation
 
@@ -123,7 +123,6 @@ class FilesController extends AppController
     {
         $this->request->allowMethod(['post', 'delete', 'get']);
         $file = $this->Files->get($id);
-        debug ($file->filename);
         if ($this->Files->delete($file)) {
             unlink(WWW_ROOT . 'files/catalogues/'.$file->filedossier.'/'.$file->filename);//Supprimer le fichier
             rmdir(WWW_ROOT . 'files/catalogues/'.$file->filedossier.'/'); //Supprimer le dossier

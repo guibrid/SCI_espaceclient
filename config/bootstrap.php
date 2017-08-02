@@ -212,8 +212,8 @@ Type::build('timestamp')
  * Plugin::load('Migrations'); //Loads a single plugin named Migrations
  *
  */
-Plugin::load('Gentelella', ['bootstrap' => true, 'routes' => true]);
 
+Plugin::load('Gentelella', ['bootstrap' => true, 'routes' => true]);
 
 /*
  * Only try to load DebugKit in development mode
@@ -228,10 +228,10 @@ if (Configure::read('debug')) {
 // To customize configuration paste it at end of file config/bootstrap.php
 
 Configure::write('Theme', [
-    'title' => 'Lillebonne',
+    'title' => 'SC International',
     'logo' => [
-        'mini' => '<b>L</b>B',
-        'large' => 'Lillebonne'
+        'mini' => '<b>S</b>C',
+        'large' => 'SC International'
     ],
     'login' => [
         'show_remember' => true,

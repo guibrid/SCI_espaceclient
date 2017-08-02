@@ -13,6 +13,9 @@
         <thead>
             <tr>
                 <th scope="col">Nom du fichier</th>
+                <?php if( isset($is_admin) && $is_admin === 1 ) { ?>
+                <th scope="col">Tarif</th>
+                <?php } ?>
                 <th scope="col">Mis à jour le</th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
@@ -21,8 +24,18 @@
             <?php foreach ($files as $file): ?>
             <tr>
                 <td><?= h($file->name) ?></td>
+                <?php if( isset($is_admin) && $is_admin === 1 ) { ?>
+                <td><?= $file->tarif->name ?></td>
+                <?php } ?>
                 <td><?= $file->modified->format('d-m-Y') ?></td>
                 <td class="actions">
+                  <?= $this->Html->link(
+                         '<i class="fa fa-download fa-2x"></i>',
+                         '/webroot/files/catalogues/' . $file->filedossier . '/' . $file->filename,
+                          [ 'escape'              => false,  //use HTML en libellé
+                            'class'               => 'icon',
+                            'title'               => 'Téléchargez le fichier',
+                            'target'              => '_blank' ] ) ?>
                   <?php if( isset($is_admin) && $is_admin === 1 ) { ?>
                     <?= $this->Html->link(
                          '<i class="fa fa-edit fa-2x"></i>',
@@ -37,15 +50,6 @@
                               'class'               => 'icon',
                               'confirm'             => __('Are you sure you want to delete {0}?', $file->name),
                               'title'               => 'Supprimer le fichier' ] ) ?>
-                  <?php } else { ?>
-                    <?= $this->Html->link(
-                           '<i class="fa fa-download fa-2x"></i>',
-                           '/webroot/files/catalogues/' . $file->filedossier . '/' . $file->filename,
-                            [ 'escape'              => false,  //use HTML en libellé
-                              'class'               => 'icon',
-                              'title'               => 'Téléchargez le fichier',
-                              'target'              => '_blank' ] ) ?>
-
                   <?php } ?>
                 </td>
             </tr>

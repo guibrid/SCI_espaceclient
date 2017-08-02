@@ -10,6 +10,7 @@
         "mobiledetect/mobiledetectlib": "2.*",
         "cakephp/migrations": "~1.0",
         "cakephp/plugin-installer": "~1.0",
+        "lib-ICU": ">=4.8",
         "backstageel/cakephp-gentelella-theme": "^1.2"
     },
     "require-dev": {
