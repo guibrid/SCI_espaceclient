@@ -17,7 +17,7 @@
                 <th scope="col">Tarif</th>
                 <?php } ?>
                 <th scope="col">Mis à jour le</th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
+                <th scope="col" class="actions"><?= __('Téléchargement') ?></th>
             </tr>
         </thead>
         <tbody>
