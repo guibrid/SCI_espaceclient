@@ -21,6 +21,13 @@ class FormHelper extends Helper
     protected $_align;
 
     /**
+     * Set on `Form::create()` to tell grid type.
+     *
+     * @var array|null
+     */
+    protected $_grid;
+
+    /**
      * The method to use when creating a control element for a form
      *
      * @var string
@@ -68,6 +75,8 @@ class FormHelper extends Helper
             'inputContainerError' => '<div class="form-group {{type}}{{required}} has-error">{{content}}</div>',
             'checkboxContainer' => '<div class="form-group{{required}}">{{content}}</div>',
             'checkboxContainerError' => '<div class="form-group{{required}} has-error">{{content}}</div>',
+            'radioContainer' => '<div class="form-group{{required}}">{{content}}</div>',
+            'radioContainerError' => '<div class="form-group{{required}} has-error">{{content}}</div>',
         ]
     ];
 

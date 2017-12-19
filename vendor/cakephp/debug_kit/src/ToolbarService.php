@@ -162,8 +162,9 @@ class ToolbarService
     public function saveData(ServerRequest $request, ResponseInterface $response)
     {
         // Skip debugkit requests and requestAction()
-        if ($request->param('plugin') === 'DebugKit' ||
-            strpos($request->getUri()->getPath(), 'debug_kit') !== false ||
+        $path = $request->getUri()->getPath();
+        if (strpos($path, 'debug_kit') !== false ||
+            strpos($path, 'debug-kit') !== false ||
             $request->is('requested')
         ) {
             return null;
@@ -216,6 +217,7 @@ class ToolbarService
      */
     public function injectScripts($row, ResponseInterface $response)
     {
+        $response = $response->withHeader('X-DEBUGKIT-ID', $row->id);
         if (strpos($response->getHeaderLine('Content-Type'), 'html') === false) {
             return $response;
         }
@@ -242,8 +244,6 @@ class ToolbarService
         $body->rewind();
         $body->write($contents);
 
-        return $response
-            ->withHeader('X-DEBUGKIT-ID', $row->id)
-            ->withBody($body);
+        return $response->withBody($body);
     }
 }

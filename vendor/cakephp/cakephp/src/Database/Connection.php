@@ -25,6 +25,8 @@ use Cake\Database\Log\QueryLogger;
 use Cake\Database\Schema\CachedCollection;
 use Cake\Database\Schema\Collection as SchemaCollection;
 use Cake\Datasource\ConnectionInterface;
+use Cake\Log\Log;
+use Exception;
 
 /**
  * Represents a connection with a database server.
@@ -127,7 +129,9 @@ class Connection implements ConnectionInterface
      */
     public function __destruct()
     {
-        unset($this->_driver);
+        if ($this->_transactionStarted && class_exists('Cake\Log\Log')) {
+            Log::warning('The connection is going to be closed but there is an active transaction.');
+        }
     }
 
     /**
@@ -220,7 +224,7 @@ class Connection implements ConnectionInterface
     {
         try {
             return $this->_driver->connect();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             throw new MissingConnectionException(['reason' => $e->getMessage()]);
         }
     }
@@ -307,7 +311,7 @@ class Connection implements ConnectionInterface
     public function run(Query $query)
     {
         $statement = $this->prepare($query);
-        $query->valueBinder()->attachTo($statement);
+        $query->getValueBinder()->attachTo($statement);
         $statement->execute();
 
         return $statement;
@@ -455,7 +459,7 @@ class Connection implements ConnectionInterface
 
         $this->_transactionLevel++;
         if ($this->isSavePointsEnabled()) {
-            $this->createSavePoint($this->_transactionLevel);
+            $this->createSavePoint((string)$this->_transactionLevel);
         }
     }
 
@@ -486,7 +490,7 @@ class Connection implements ConnectionInterface
             return $this->_driver->commitTransaction();
         }
         if ($this->isSavePointsEnabled()) {
-            $this->releaseSavePoint($this->_transactionLevel);
+            $this->releaseSavePoint((string)$this->_transactionLevel);
         }
 
         $this->_transactionLevel--;
@@ -676,7 +680,7 @@ class Connection implements ConnectionInterface
 
         try {
             $result = $callback($this);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->rollback(false);
             throw $e;
         }
@@ -724,7 +728,7 @@ class Connection implements ConnectionInterface
 
         try {
             $result = $callback($this);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->enableForeignKeys();
             throw $e;
         }
@@ -808,17 +812,43 @@ class Connection implements ConnectionInterface
 
     /**
      * {@inheritDoc}
+     *
+     * @deprecated 3.5.0 Use getLogger() and setLogger() instead.
      */
     public function logger($instance = null)
     {
         if ($instance === null) {
-            if ($this->_logger === null) {
-                $this->_logger = new QueryLogger();
-            }
-
-            return $this->_logger;
+            return $this->getLogger();
         }
-        $this->_logger = $instance;
+
+        $this->setLogger($instance);
+    }
+
+    /**
+     * Sets a logger
+     *
+     * @param object $logger Logger object
+     * @return $this
+     */
+    public function setLogger($logger)
+    {
+        $this->_logger = $logger;
+
+        return $this;
+    }
+
+    /**
+     * Gets the logger object
+     *
+     * @return object logger instance
+     */
+    public function getLogger()
+    {
+        if ($this->_logger === null) {
+            $this->_logger = new QueryLogger();
+        }
+
+        return $this->_logger;
     }
 
     /**
@@ -831,7 +861,7 @@ class Connection implements ConnectionInterface
     {
         $query = new LoggedQuery();
         $query->query = $sql;
-        $this->logger()->log($query);
+        $this->getLogger()->log($query);
     }
 
     /**
@@ -843,8 +873,8 @@ class Connection implements ConnectionInterface
      */
     protected function _newLogger(StatementInterface $statement)
     {
-        $log = new LoggingStatement($statement, $this->getDriver());
-        $log->logger($this->logger());
+        $log = new LoggingStatement($statement, $this->_driver);
+        $log->setLogger($this->getLogger());
 
         return $log;
     }
