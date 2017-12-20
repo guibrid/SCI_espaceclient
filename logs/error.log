@@ -2485,3 +2485,139 @@ Stack Trace:
 #15 {main}
 
 
+2017-12-20 14:42:31 Error: [PDOException] SQLSTATE[HY000]: General error: 11 database disk image is malformed in C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Database\Statement\StatementDecorator.php on line 174
+Request URL: /
+Referer URL: http://localhost/webaxis/sc-international/espaceclient-dev/login
+Stack Trace:
+#0 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Database\Statement\StatementDecorator.php(174): PDOStatement->execute(NULL)
+#1 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Database\Statement\StatementDecorator.php(174): Cake\Database\Statement\StatementDecorator->execute(NULL)
+#2 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Database\Statement\BufferedStatement.php(76): Cake\Database\Statement\StatementDecorator->execute(NULL)
+#3 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Database\Statement\SqliteStatement.php(41): Cake\Database\Statement\BufferedStatement->execute(NULL)
+#4 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Database\Connection.php(315): Cake\Database\Statement\SqliteStatement->execute()
+#5 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Database\Query.php(214): Cake\Database\Connection->run(Object(Cake\ORM\Query))
+#6 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\ORM\Table.php(1925): Cake\Database\Query->execute()
+#7 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\ORM\Table.php(1819): Cake\ORM\Table->_insert(Object(DebugKit\Model\Entity\Request), Array)
+#8 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\ORM\Table.php(1732): Cake\ORM\Table->_processSave(Object(DebugKit\Model\Entity\Request), Object(ArrayObject))
+#9 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\ORM\Table.php(1455): Cake\ORM\Table->Cake\ORM\{closure}()
+#10 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Database\Connection.php(682): Cake\ORM\Table->Cake\ORM\{closure}(Object(Cake\Database\Connection))
+#11 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\ORM\Table.php(1456): Cake\Database\Connection->transactional(Object(Closure))
+#12 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\ORM\Table.php(1733): Cake\ORM\Table->_executeTransaction(Object(Closure), true)
+#13 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\debug_kit\src\ToolbarService.php(205): Cake\ORM\Table->save(Object(DebugKit\Model\Entity\Request))
+#14 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php(53): DebugKit\ToolbarService->saveData(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#15 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Http\Runner.php(65): DebugKit\Middleware\DebugKitMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#16 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Http\Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#17 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Http\Server.php(81): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#18 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\webroot\index.php(37): Cake\Http\Server->run()
+#19 {main}
+
+
+2017-12-20 14:42:32 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Favicon.ico could not be found.
+Exception Attributes: array (
+  'class' => 'Favicon.ico',
+  'plugin' => false,
+  'prefix' => false,
+  '_ext' => false,
+)
+Request URL: /favicon.ico
+Referer URL: http://localhost/webaxis/sc-international/espaceclient-dev/
+Stack Trace:
+#0 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Http\ControllerFactory.php(85): Cake\Http\ControllerFactory->missingController(Object(Cake\Http\ServerRequest))
+#1 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Http\ControllerFactory.php(36): Cake\Http\ControllerFactory->getControllerClass(Object(Cake\Http\ServerRequest))
+#2 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Http\ActionDispatcher.php(90): Cake\Http\ControllerFactory->create(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#3 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Http\BaseApplication.php(108): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#4 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#5 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php(104): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#6 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#7 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php(97): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#8 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#9 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php(98): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#10 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#11 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php(52): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#12 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Http\Runner.php(65): DebugKit\Middleware\DebugKitMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#13 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Http\Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#14 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Http\Server.php(81): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#15 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\webroot\index.php(37): Cake\Http\Server->run()
+#16 {main}
+
+
+2017-12-20 14:42:32 Error: [PDOException] SQLSTATE[HY000]: General error: 11 database disk image is malformed in C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Database\Statement\StatementDecorator.php on line 174
+Request URL: /favicon.ico
+Referer URL: http://localhost/webaxis/sc-international/espaceclient-dev/
+Stack Trace:
+#0 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Database\Statement\StatementDecorator.php(174): PDOStatement->execute(NULL)
+#1 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Database\Statement\StatementDecorator.php(174): Cake\Database\Statement\StatementDecorator->execute(NULL)
+#2 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Database\Statement\BufferedStatement.php(76): Cake\Database\Statement\StatementDecorator->execute(NULL)
+#3 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Database\Statement\SqliteStatement.php(41): Cake\Database\Statement\BufferedStatement->execute(NULL)
+#4 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Database\Connection.php(315): Cake\Database\Statement\SqliteStatement->execute()
+#5 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Database\Query.php(214): Cake\Database\Connection->run(Object(Cake\ORM\Query))
+#6 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\ORM\Table.php(1925): Cake\Database\Query->execute()
+#7 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\ORM\Table.php(1819): Cake\ORM\Table->_insert(Object(DebugKit\Model\Entity\Request), Array)
+#8 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\ORM\Table.php(1732): Cake\ORM\Table->_processSave(Object(DebugKit\Model\Entity\Request), Object(ArrayObject))
+#9 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\ORM\Table.php(1455): Cake\ORM\Table->Cake\ORM\{closure}()
+#10 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Database\Connection.php(682): Cake\ORM\Table->Cake\ORM\{closure}(Object(Cake\Database\Connection))
+#11 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\ORM\Table.php(1456): Cake\Database\Connection->transactional(Object(Closure))
+#12 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\ORM\Table.php(1733): Cake\ORM\Table->_executeTransaction(Object(Closure), true)
+#13 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\debug_kit\src\ToolbarService.php(205): Cake\ORM\Table->save(Object(DebugKit\Model\Entity\Request))
+#14 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php(53): DebugKit\ToolbarService->saveData(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#15 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Http\Runner.php(65): DebugKit\Middleware\DebugKitMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#16 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Http\Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#17 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Http\Server.php(81): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#18 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\webroot\index.php(37): Cake\Http\Server->run()
+#19 {main}
+
+
+2017-12-20 14:42:33 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Favicon.ico could not be found.
+Exception Attributes: array (
+  'class' => 'Favicon.ico',
+  'plugin' => false,
+  'prefix' => false,
+  '_ext' => false,
+)
+Request URL: /favicon.ico
+Referer URL: http://localhost/webaxis/sc-international/espaceclient-dev/
+Stack Trace:
+#0 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Http\ControllerFactory.php(85): Cake\Http\ControllerFactory->missingController(Object(Cake\Http\ServerRequest))
+#1 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Http\ControllerFactory.php(36): Cake\Http\ControllerFactory->getControllerClass(Object(Cake\Http\ServerRequest))
+#2 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Http\ActionDispatcher.php(90): Cake\Http\ControllerFactory->create(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#3 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Http\BaseApplication.php(108): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#4 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#5 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php(104): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#6 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#7 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php(97): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#8 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#9 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php(98): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#10 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#11 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php(52): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#12 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Http\Runner.php(65): DebugKit\Middleware\DebugKitMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#13 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Http\Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#14 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Http\Server.php(81): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#15 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\webroot\index.php(37): Cake\Http\Server->run()
+#16 {main}
+
+
+2017-12-20 14:42:33 Error: [PDOException] SQLSTATE[HY000]: General error: 11 database disk image is malformed in C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Database\Statement\StatementDecorator.php on line 174
+Request URL: /favicon.ico
+Referer URL: http://localhost/webaxis/sc-international/espaceclient-dev/
+Stack Trace:
+#0 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Database\Statement\StatementDecorator.php(174): PDOStatement->execute(NULL)
+#1 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Database\Statement\StatementDecorator.php(174): Cake\Database\Statement\StatementDecorator->execute(NULL)
+#2 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Database\Statement\BufferedStatement.php(76): Cake\Database\Statement\StatementDecorator->execute(NULL)
+#3 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Database\Statement\SqliteStatement.php(41): Cake\Database\Statement\BufferedStatement->execute(NULL)
+#4 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Database\Connection.php(315): Cake\Database\Statement\SqliteStatement->execute()
+#5 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Database\Query.php(214): Cake\Database\Connection->run(Object(Cake\ORM\Query))
+#6 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\ORM\Table.php(1925): Cake\Database\Query->execute()
+#7 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\ORM\Table.php(1819): Cake\ORM\Table->_insert(Object(DebugKit\Model\Entity\Request), Array)
+#8 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\ORM\Table.php(1732): Cake\ORM\Table->_processSave(Object(DebugKit\Model\Entity\Request), Object(ArrayObject))
+#9 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\ORM\Table.php(1455): Cake\ORM\Table->Cake\ORM\{closure}()
+#10 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Database\Connection.php(682): Cake\ORM\Table->Cake\ORM\{closure}(Object(Cake\Database\Connection))
+#11 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\ORM\Table.php(1456): Cake\Database\Connection->transactional(Object(Closure))
+#12 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\ORM\Table.php(1733): Cake\ORM\Table->_executeTransaction(Object(Closure), true)
+#13 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\debug_kit\src\ToolbarService.php(205): Cake\ORM\Table->save(Object(DebugKit\Model\Entity\Request))
+#14 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php(53): DebugKit\ToolbarService->saveData(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#15 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Http\Runner.php(65): DebugKit\Middleware\DebugKitMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#16 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Http\Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#17 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\vendor\cakephp\cakephp\src\Http\Server.php(81): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#18 C:\wamp64\www\webaxis\sc-international\espaceclient-dev\webroot\index.php(37): Cake\Http\Server->run()
+#19 {main}
+
+
