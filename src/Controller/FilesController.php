@@ -46,10 +46,11 @@ class FilesController extends AppController
           $where = '';
         } else {
           $where = ['tarif_id' => $user['tarif_id']];
+          $orWhere = ['tarif_id' => 100];
         }
 
 
-        $query = $this->Files->find()->where($where);
+        $query = $this->Files->find()->where($where)->orWhere($orWhere);
 
         $files = $this->paginate($query);
 
