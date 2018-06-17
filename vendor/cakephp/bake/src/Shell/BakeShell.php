@@ -14,6 +14,7 @@
  */
 namespace Bake\Shell;
 
+use Bake\Utility\CommonOptionsTrait;
 use Cake\Cache\Cache;
 use Cake\Console\Shell;
 use Cake\Core\Configure;
@@ -30,9 +31,12 @@ use Cake\Utility\Inflector;
  * models, and templates. Going further, Bake can also write Unit Tests for you.
  *
  * @link https://book.cakephp.org/3.0/en/bake/usage.html
+ *
+ * @property \Bake\Shell\Task\ModelTask $Model
  */
 class BakeShell extends Shell
 {
+    use CommonOptionsTrait;
     use ConventionsTrait;
 
     /**
@@ -52,6 +56,9 @@ class BakeShell extends Shell
         parent::startup();
         Configure::write('debug', true);
         Cache::disable();
+        if (!Plugin::loaded('WyriHaximus/TwigView')) {
+            Plugin::load('WyriHaximus/TwigView', ['bootstrap' => true]);
+        }
 
         $task = $this->_camelize($this->command);
 
@@ -71,7 +78,7 @@ class BakeShell extends Shell
     /**
      * Override main() to handle action
      *
-     * @return mixed
+     * @return bool
      */
     public function main()
     {
@@ -118,8 +125,8 @@ class BakeShell extends Shell
      * Cake\Shell\Task\BakeTask:
      *
      * - Cake/Shell/Task/
-     * - App/Shell/Task/
      * - Shell/Task for each loaded plugin
+     * - App/Shell/Task/
      *
      * @return void
      */
@@ -127,7 +134,6 @@ class BakeShell extends Shell
     {
         $tasks = [];
 
-        $tasks = $this->_findTasks($tasks, APP, Configure::read('App.namespace'));
         foreach (Plugin::loaded() as $plugin) {
             $tasks = $this->_findTasks(
                 $tasks,
@@ -136,6 +142,7 @@ class BakeShell extends Shell
                 $plugin
             );
         }
+        $tasks = $this->_findTasks($tasks, APP, Configure::read('App.namespace'));
 
         $this->tasks = array_values($tasks);
         parent::loadTasks();
@@ -272,14 +279,6 @@ class BakeShell extends Shell
     {
         $parser = parent::getOptionParser();
 
-        $bakeThemes = [];
-        foreach (Plugin::loaded() as $plugin) {
-            $path = Plugin::classPath($plugin);
-            if (is_dir($path . 'Template' . DS . 'Bake')) {
-                $bakeThemes[] = $plugin;
-            }
-        }
-
         $parser->setDescription(
             'The Bake script generates controllers, models and template files for your application.' .
             ' If run with no command line arguments, Bake guides the user through the class creation process.' .
@@ -292,27 +291,14 @@ class BakeShell extends Shell
             'Usage: "bake all --everything"',
             'default' => false,
             'boolean' => true,
-        ])->addOption('connection', [
-            'help' => 'Database connection to use in conjunction with `bake all`.',
-            'short' => 'c',
-            'default' => 'default'
-        ])->addOption('force', [
-            'short' => 'f',
-            'boolean' => true,
-            'help' => 'Force overwriting existing files without prompting.'
-        ])->addOption('plugin', [
-            'short' => 'p',
-            'help' => 'Plugin to bake into.'
         ])->addOption('prefix', [
             'help' => 'Prefix to bake controllers and templates into.'
         ])->addOption('tablePrefix', [
             'help' => 'Table prefix to be used in models.',
             'default' => null
-        ])->addOption('theme', [
-            'short' => 't',
-            'help' => 'The theme to use when baking code.',
-            'choices' => $bakeThemes
         ]);
+
+        $parser = $this->_setCommonOptions($parser);
 
         foreach ($this->_taskMap as $task => $config) {
             $taskParser = $this->{$task}->getOptionParser();
